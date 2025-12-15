@@ -1,0 +1,15 @@
+# Build artifacts
+obj_dir/
+*.o
+*.elf
+*.hex
+*.vcd
+*.log
+build/
+
+# Editor files
+.vscode/
+*.swp
+
+# OS junk
+.DS_Store
