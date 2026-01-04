@@ -22,6 +22,15 @@ static void test_branch_flush(void){
     else uart_puts("FAIL\n");
 }
 
+static void test_load_use(void){
+    uart_puts("load-use: ");
+    volatile unsigned int a[2] = {0x12345678, 0};
+    volatile unsigned int y = a[0]; // load
+    volatile unsigned int z = y + 1; // immediate use
+    if (z == 0x12345679) uart_puts("PASS\n");
+    else uart_puts("FAIL\n");
+}
+
 int main(void)  {
     uart_puts ("RV32I bring-up tests\n");
 
@@ -41,6 +50,7 @@ int main(void)  {
     check("lbu1", buf[1], 0xAB);
 
     test_branch_flush();
+    test_load_use();
 
     uart_puts("DONE\n");
     while (1) {}
