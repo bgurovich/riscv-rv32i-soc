@@ -12,6 +12,16 @@ static void check(const char *name, uint32_t got, uint32_t exp) {
     }
 }
 
+static void test_branch_flush(void){
+    uart_puts("branch/flush: ");
+
+    volatile int x = 0;
+    for (int i = 0; i < 5; i++) x++;
+
+    if (x == 5) uart_puts("PASS\n");
+    else uart_puts("FAIL\n");
+}
+
 int main(void)  {
     uart_puts ("RV32I bring-up tests\n");
 
@@ -29,6 +39,8 @@ int main(void)  {
     buf[1] = 0xAB;
     check("lbu0", buf[0], 0x12);
     check("lbu1", buf[1], 0xAB);
+
+    test_branch_flush();
 
     uart_puts("DONE\n");
     while (1) {}
