@@ -38,28 +38,6 @@ This project was built to demonstrate **RTL design, pipeline control, multi-cycl
 
 ## 🧠 High-Level Architecture
 
-    +-------------------+
-    |   RV32IM CPU      |
-    |  (2-stage pipe)   |
-    +---------+---------+
-              |
-              | instr + data
-              |
-    +---------v---------+
-    |   RAM (64 KB)     |
-    | byte-addressable  |
-    +---------+---------+
-              |
-              | MMIO
-              |
-    +---------v---------+
-    |   UART TX         |
-    | 0x1000_0000       |
-    +-------------------+
-
-> Instruction fetch and data access share a simple memory system.  
-> UART output is handled through memory-mapped I/O.
-
 <p align="center">
   <img src="images/RV32IM_CPU.drawio.svg" width="800">
 </p>
@@ -67,6 +45,9 @@ This project was built to demonstrate **RTL design, pipeline control, multi-cycl
 <p align="center">
   <em>High-level block diagram of the RV32IM SoC.</em>
 </p>
+
+> Instruction fetch and data access share a simple memory system.  
+> UART output is handled through memory-mapped I/O.
 
 ---
 
