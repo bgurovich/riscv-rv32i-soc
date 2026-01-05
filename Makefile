@@ -13,7 +13,7 @@ all: sim
 fw: $(FW_HEX)
 
 $(FW_ELF): fw/start.S fw/tests.c fw/linker.ld
-	$(CC_RISCV) -march=rv32i -mabi=ilp32 -nostdlib -ffreestanding \
+	$(CC_RISCV) -march=rv32im -mabi=ilp32 -nostdlib -ffreestanding \
 	  -Wl,-T,fw/linker.ld fw/start.S fw/tests.c -o $(FW_ELF)
 
 $(FW_HEX): $(FW_ELF)

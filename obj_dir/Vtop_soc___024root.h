@@ -16,11 +16,17 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_soc___024root final : public VerilatedMo
     // DESIGN SPECIFIC STATE
     VL_IN8(clk,0,0);
     VL_IN8(rst,0,0);
+    CData/*4:0*/ top_soc__DOT__u_cpu__DOT__rd;
     CData/*7:0*/ top_soc__DOT__u_cpu__DOT__load_ext__Vstatic__b;
     CData/*0:0*/ top_soc__DOT__u_cpu__DOT__do_wb;
     CData/*0:0*/ top_soc__DOT__u_cpu__DOT__d_we_n;
     CData/*3:0*/ top_soc__DOT__u_cpu__DOT__d_wstrb_n;
     CData/*0:0*/ top_soc__DOT__u_cpu__DOT__ex_taken;
+    CData/*0:0*/ top_soc__DOT__u_cpu__DOT__is_mul;
+    CData/*0:0*/ top_soc__DOT__u_cpu__DOT__mul_busy;
+    CData/*2:0*/ top_soc__DOT__u_cpu__DOT__mul_cnt;
+    CData/*4:0*/ top_soc__DOT__u_cpu__DOT__mul_rd;
+    CData/*0:0*/ top_soc__DOT__u_cpu__DOT__start_mul;
     CData/*0:0*/ top_soc__DOT__u_cpu__DOT____VdfgExtracted_h117a9097__0;
     CData/*0:0*/ top_soc__DOT__u_cpu__DOT____VdfgExtracted_h12c968b5__0;
     CData/*4:0*/ top_soc__DOT__u_cpu__DOT____VdfgTmp_hef64d676__0;
@@ -45,6 +51,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_soc___024root final : public VerilatedMo
     IData/*31:0*/ top_soc__DOT__u_cpu__DOT__wb_data;
     IData/*31:0*/ top_soc__DOT__u_cpu__DOT__d_addr_n;
     IData/*31:0*/ top_soc__DOT__u_cpu__DOT__d_wdata_n;
+    IData/*31:0*/ top_soc__DOT__u_cpu__DOT__mul_res;
     IData/*31:0*/ top_soc__DOT__u_cpu__DOT__pc_f_next;
     IData/*31:0*/ top_soc__DOT__u_cpu__DOT____VdfgExtracted_hae3c383b__0;
     IData/*31:0*/ top_soc__DOT__u_cpu__DOT____VdfgExtracted_hea06c40a__0;

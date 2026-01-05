@@ -31,6 +31,22 @@ static void test_load_use(void){
     else uart_puts("FAIL\n");
 }
 
+static void test_mul(void){
+    uart_puts("mul: ");
+    volatile int a = 7, b = 6;
+    volatile int c = a * b;
+    if (c == 42) uart_puts("PASS\n");
+    else uart_puts("FAIL\n");
+}
+
+static void test_mul_neg(void){
+    uart_puts("mulneg: ");
+    volatile int a = -3, b = 9;
+    volatile int c = a * b;
+    if (c == -27) uart_puts("PASS\n");
+    else uart_puts("FAIL\n");
+}
+
 int main(void)  {
     uart_puts ("RV32I bring-up tests\n");
 
@@ -51,6 +67,9 @@ int main(void)  {
 
     test_branch_flush();
     test_load_use();
+
+    test_mul();
+    test_mul_neg();
 
     uart_puts("DONE\n");
     while (1) {}
