@@ -60,6 +60,14 @@ This project was built to demonstrate **RTL design, pipeline control, multi-cycl
 > Instruction fetch and data access share a simple memory system.  
 > UART output is handled through memory-mapped I/O.
 
+<p align="center">
+  <img src="images/RV32IM_CPU.drawio.svg" width="800">
+</p>
+
+<p align="center">
+  <em>High-level block diagram of the RV32IM SoC.</em>
+</p>
+
 ---
 
 ## 🗂️ Repository Structure
