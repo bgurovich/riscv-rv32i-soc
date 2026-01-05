@@ -5,13 +5,12 @@ using Verilator. The SoC includes a custom CPU core, byte-addressed RAM,
 and a memory-mapped UART for C bring-up.
 
 ## Features
-- RV32I single-cycle CPU core
-- Byte-addressed RAM with byte strobes
-- UART MMIO @ `0x1000_0000`
-- Bare-metal C toolchain (`riscv64-unknown-elf-gcc`)
-- Verilator simulation
-- Automated bring-up tests (ALU + load/store)
-- Implemented 2-stage pipelined RV32I core and exteded ISA with multi-cycle MUL unit featuring pipeline stall/busy control; verified via bare-metal C tests over UART MMIO in Verilator.
+- 2-stage pipeline (IF / EX+WB) with control-flow flush
+- RV32IM subset: RV32I + MUL (multi-vyvle execution with stall/busy)
+- Byte-addressed RAM w/byte strobes (SB/SH/SW)
+- UART MMIO TX @ 0x1000_0000
+- Bare-metal firmware built with riscv64-unknown-elf-gcc + custom linker script
+- Verified in Verilator with C bring-up + instruction tests
 
 ## Memory Map
 | Region | Address Range |
