@@ -22,7 +22,7 @@ and a memory-mapped UART for C bring-up.
 ```bash
 make sim
 
-
+## Waveforms
 <p align="center">
     <img src="images/pipeline_flow.png" width="900">
 </p>
