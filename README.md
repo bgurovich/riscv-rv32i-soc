@@ -1,7 +1,7 @@
 # RV32IM RISC-V System-on-Chip (SoC)
 
 A bare-metal **RV32IM RISC-V system-on-chip** implemented in **synthesizable Verilog** and verified using **Verilator**. 
-The design features a custom pipelined CPU core, byte-addressable RAM, and a memory-mapped UART, capable of running real C programs compiled with `riscv64-unknown-elf-gcc`.
+The SoC integrates a **custom 2-stage pipelined CPU** byte-addressable RAM, and a memory-mapped UART, and is capable of running real bare-metal C programs.
 
 This project was built to demonstrate **RTL design, pipeline control, multi-cycle execution, and SoC integration**
 
@@ -9,7 +9,7 @@ This project was built to demonstrate **RTL design, pipeline control, multi-cycl
 
 ## 🔍 Project Summary
 
-This project implements a custom RV32IM RISC-V CPU in synthesizable Verilog with a 2-stage in-order pipeline. Control flow is resolved in the execute stage with correct pipeline flush, and RV32M MUL instructions are supported via a multi-cycle unit that stalls the pipeline. The CPU is integrated into a minimal SoC with byte-addressable RAM and a memory-mapped UART, capable of running bare-metal C programs comiled with riscv64-unknwon-elf-gcc. Correctness is verified using Verilator simulation and GTKWave waveforms.
+This project implements a custom RV32IM RISC-V CPU in synthesizable Verilog with a 2-stage in-order pipeline. Control flow is resolved in the execute stage with correct pipeline flush, and RV32M MUL instructions are supported via a multi-cycle unit that stalls the pipeline. The CPU is integrated into a minimal SoC with byte-addressable RAM and a memory-mapped UART, capable of running bare-metal C programs compiled with `riscv64-unknown-elf-gcc`. Correctness is verified using Verilator simulation and GTKWave waveforms.
 
 ## ✨ Features
 
@@ -126,7 +126,7 @@ Waveforms were captured in **GTKWave** to validate pipeline behavior, control fl
   - Load/store behavior
   - Branch correctness
   - MUL stall behavior
-- GTKWave used to inspect pipline state, flush behavior, and stalls
+- GTKWave used to inspect pipeline state, flush behavior, and stalls
 
 ### 🎨 Waveform Color Legend
 
@@ -217,7 +217,7 @@ branch/flush: PASS
 load-use: PASS
 mul: PASS
 mulneg: PASS
-nulstall: PASS
+mulstall: PASS
 DONE
 ```
 ---
@@ -226,6 +226,6 @@ DONE
 - Forwarding unit
 - Timer MMIO
 - Interrupt support
-- Intruction cache
+- Instruction cache
 - ASIC-style synthesis flow (Yosys)
 
