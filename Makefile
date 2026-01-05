@@ -21,11 +21,15 @@ $(FW_HEX): $(FW_ELF)
 
 sim: fw
 	$(VERILATOR) -Wall -Wno-UNUSEDSIGNAL -Wno-UNOPTFLAT --cc --exe --build \
+	  --trace --trace-depth 99 \
 	  -Irtl \
 	  rtl/$(TOP).v rtl/rv32i_core.v rtl/simple_ram_dp.v rtl/uart_mmio.v \
 	  tb/tb_soc.cpp \
 	  -o sim.out
 	./obj_dir/sim.out +MEMFILE=$(FW_HEX)
 
+wave: sim
+	gtkwave waves.vcd
+
 clean:
-	rm -rf obj_dir $(FW_ELF) $(FW_HEX)
+	rm -rf obj_dir $(FW_ELF) $(FW_HEX) waves.vcd
