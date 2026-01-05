@@ -18,6 +18,16 @@ and a memory-mapped UART for C bring-up.
 | RAM | `0x0000_0000 – 0x0000_FFFF` |
 | UART TX | `0x1000_0000` |
 
+
+## Waveforms
+<p align="center">
+    <img src="images/pipeline_flow.png" width="900">
+</p>
+
+<p align="center">
+    <em>Figure 1 - 2-stage pipeline execution showing fetch, execute, and writeback.</em>
+</p>
+
 ## Run
 ```bash
 make sim
