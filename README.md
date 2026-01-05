@@ -38,48 +38,51 @@ This project was built to demonstrate **RTL design, pipeline control, multi-cycl
 
 ## 🧠 High-Level Architecture
 
-+-------------------+
-| RV32IM CPU |
-| (2-stage pipe) |
-+---------+---------+
-|
-| instr + data
-|
-+---------v---------+
-| RAM (64 KB) |
-| byte-addressable |
-+---------+---------+
-|
-| MMIO
-|
-+---------v---------+
-| UART TX |
-| 0x1000_0000 |
-+-------------------+
+    +-------------------+
+    |   RV32IM CPU      |
+    |  (2-stage pipe)   |
+    +---------+---------+
+              |
+              | instr + data
+              |
+    +---------v---------+
+    |   RAM (64 KB)     |
+    | byte-addressable  |
+    +---------+---------+
+              |
+              | MMIO
+              |
+    +---------v---------+
+    |   UART TX         |
+    | 0x1000_0000       |
+    +-------------------+
+
+> Instruction fetch and data access share a simple memory system.  
+> UART output is handled through memory-mapped I/O.
 
 ---
 
 ## 🗂️ Repository Structure
-riscv-soc/
-├── rtl/
-│ ├── rv32i_core.v # 2-stage pipelined RV32IM CPU
-│ ├── top_soc.v # CPU + RAM + UART integration
-│ ├── simple_ram_dp.v # Byte-addressable RAM with strobes
-│ └── uart_mmio.v # UART TX MMIO peripheral
-│
-├── fw/
-│ ├── start.S # Reset entry + C runtime jump
-│ ├── tests.c # Bring-up & instruction tests
-│ ├── linker.ld # Bare-metal memory layout
-│ └── fw.hex # Verilog memory image (generated)
-│
-├── tb/
-│ └── tb_soc.cpp # Verilator C++ testbench
-│
-├── images/ # GTKWave screenshots (for README)
-│
-├── Makefile
-└── obj_dir/ # Verilator output (generated)
+
+    riscv-soc/
+    ├── rtl/
+    │   ├── rv32i_core.v      # 2-stage pipelined RV32IM CPU
+    │   ├── top_soc.v         # CPU + RAM + UART integration
+    │   ├── simple_ram_dp.v  # Byte-addressable RAM with strobes
+    │   └── uart_mmio.v       # UART TX MMIO peripheral
+    │
+    ├── fw/
+    │   ├── start.S           # Reset entry + C runtime jump
+    │   ├── tests.c           # Bring-up & instruction tests
+    │   ├── linker.ld         # Bare-metal memory layout
+    │   └── fw.hex            # Verilog memory image (generated)
+    │
+    ├── tb/
+    │   └── tb_soc.cpp        # Verilator C++ testbench
+    │
+    ├── images/               # GTKWave screenshots
+    ├── Makefile
+    └── obj_dir/              # Verilator output (generated)
 
 ---
 
@@ -163,5 +166,36 @@ Waveforms were captured in **GTKWave** to validate pipeline behavior, control fl
 ### Run Simulation
 ```bash
 make sim
+```
 
+### View Waveforms
+```bash
+make wave
+```
+
+## Edample Firmware Output
+```
+RV32I bring-up tests
+add: PASS
+sub: PASS
+xor: PASS
+and: PASS
+or: PASS
+lbu0: PASS
+lbu1: PASS
+branch/flush: PASS
+load-use: PASS
+mul: PASS
+mulneg: PASS
+nulstall: PASS
+DONE
+```
+---
+
+## Future Work
+- Forwarding unit
+- Timer MMIO
+- Interrupt support
+- Intruction cache
+- ASIC-style synthesis flow (Yosys)
 
